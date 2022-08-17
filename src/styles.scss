@@ -1,1 +1,100 @@
+@use "src/variables" as v;
+
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$AgriFresh-primary: mat.define-palette(mat.$light-green-palette);
+$AgriFresh-accent: mat.define-palette(mat.$grey-palette, 500, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$AgriFresh-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$AgriFresh-theme: mat.define-light-theme((
+  color: (
+    primary: $AgriFresh-primary,
+    accent: $AgriFresh-accent,
+    warn: $AgriFresh-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($AgriFresh-theme);
+
 /* You can add global styles to this file, and also import other style files */
+
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: "Roboto", Arial, sans-serif; }
+
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary, .mat-toolbar {
+  color: v.$AgriFresh-text !important; 
+}
+
+.centered{
+ margin: auto auto !important; 
+}
+
+// zooming content on hover
+.zoom-container{
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.zoom{
+  transition: transform .2s;
+  cursor:pointer;
+}
+
+.zoom:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.5); 
+}
+
+//cart-quantity input field
+.cart-quantity{
+  width: 70px;
+  margin-right:  8px;
+  margin-left:   8px;
+  input{
+    text-align: center;
+  }
+  
+}
+.cart-quantity.mat-form-field-appearance-fill .mat-form-field-flex {
+  border-radius: 4px;
+  padding:0;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+
+
+app-cart{    
+  width: 100% !important;
+}
+
+a:hover {
+  color: inherit;
+}

@@ -1,0 +1,75 @@
+
+@use "src/variables" as v;
+
+
+.spacer{
+    flex: 1 1 auto;
+}
+
+a{
+    margin-right: 15px;
+}
+
+mat-toolbar {
+    z-index: 10;
+    overflow: hidden;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+  }
+
+  .active{
+    border-bottom: 2px solid;
+    border-radius: 0;
+  }
+
+ 
+
+  // Carousel
+  .carousel-caption {    
+    bottom: 30%;
+    top: 30%;
+    line-height: 1.3;
+    text-transform: uppercase;    
+
+    h1{
+      font-size: 70px;
+      font-weight: 600;
+      font-family: "Amatic SC", cursive !important;
+      padding-bottom: 20px;
+    }
+    h4{
+      font-size: 18px;
+      font-weight: 300;
+      font-family: "Poppins", Arial, sans-serif !important;
+      letter-spacing: 4px !important;
+    }
+  }
+
+  div.active{
+    border:none;
+  }
+
+  @media (max-width: v.$l-max) {
+    .carousel-caption  {
+      h1{
+        font-size: 3.1rem;
+      }
+      h4{
+        font-size: 16px;
+      }
+    }
+  }
+
+
+  @media (max-width: v.$m-max) {
+    .carousel-caption  {
+      h1{
+        font-size: 2rem;
+      }
+      h4{
+        font-size: 14px;
+      }
+    }
+  }
+
+  

@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiDomain: "https://jayasurya-mean-app.herokuapp.com"
 };

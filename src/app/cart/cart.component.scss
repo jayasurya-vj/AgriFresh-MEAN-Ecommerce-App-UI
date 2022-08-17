@@ -1,0 +1,31 @@
+
+@use "src/variables" as v;
+
+
+img{
+    max-height: 150px;
+    max-width: 150px;
+}
+
+.quantity-text{
+    width:42px;
+    text-align: center;
+}
+
+mat-header-row{
+    background-color:  v.$AgriFresh-primary-colr;
+}
+
+mat-header-cell {
+    color: v.$AgriFresh-text !important;
+    font-weight: 600;
+
+}
+mat-table{
+    font-family: "Poppins", Arial, sans-serif;
+}
+
+mat-cell.cart-quantity-input{
+    display: flex;
+    align-items: baseline;
+}

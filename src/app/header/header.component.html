@@ -1,0 +1,48 @@
+<mat-toolbar color="primary" class="mat-elevation-z6">
+    <mat-icon>eco</mat-icon><span>AgriFresh</span>
+
+    <div class="spacer"></div>
+
+    <a mat-button routerLink="/home" routerLinkActive="active">Home</a>
+    <a mat-button routerLink="/shop" routerLinkActive="active">Shop</a>
+    <a mat-button routerLink="/cart"  matBadge="8" matBadgePosition="after" matBadgeColor="warn" routerLinkActive="active">       
+        Cart <mat-icon>shopping_cart</mat-icon></a>
+    <a  *ngIf="!isAuthenticated" mat-raised-button color="primary" routerLink="/user/login" routerLinkActive="active">Login</a>
+     <button *ngIf="isAuthenticated" mat-button (click)="authService.logout()"> Logout </button>
+    
+  </mat-toolbar>
+ <!--
+  <div id="carouselFade" class="carousel slide carousel-fade w-100" data-bs-ride="carousel">
+     data-bs-ride="carousel" 
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="2000">
+        <img  mat-card-image class="zoom" src="/assets/images/bg0.jpg"  class="d-block" alt="...">
+        <div class="carousel-caption">
+        <h1>AGRIFRESH</h1>
+        <h4>Your fresh food partner</h4>
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="2000">
+        <img  mat-card-image class="zoom" src="/assets/images/bg1.jpg"  class="d-block" alt="...">
+        <div class="carousel-caption">
+        <h1>100% Organic Fruits and Vegetables</h1>
+        <h4>Fresh from farm</h4>
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="2000">
+        <img mat-card-image class="zoom" src="/assets/images/bg2.jpg"  class="d-block" alt="...">
+        <div class="carousel-caption">
+        <h1>Rich in Minerals and Nutrients</h1>
+        <h4>Healthy life Guranteed</h4>
+        </div>
+      </div>          
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselFade" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselFade" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>-->
