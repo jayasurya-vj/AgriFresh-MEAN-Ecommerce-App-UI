@@ -1,17 +1,21 @@
 
-<mat-card>
-    <mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-card *ngIf="!isLoading">
     <form #signupForm="ngForm" (submit)="onSignup(signupForm)" *ngIf="!isLoading">
+      <mat-form-field>
+        <input matInput ngModel #name="ngModel" type="text" name="name" placeholder="Name" required/>
+        <mat-error *ngIf="name.invalid">Please enter your Name</mat-error>
+      </mat-form-field>  
     <mat-form-field>
       <input matInput ngModel #email="ngModel" type="text" name="email" placeholder="E-mail" required email/>
       <mat-error *ngIf="email.invalid">Please enter a valid email</mat-error>
     </mat-form-field>    
   <mat-form-field>
-    <input matInput ngModel #password="ngModel" type="password" name="password" placeholder="Password" required/>
-    <mat-error *ngIf="password.invalid">Please enter a post password</mat-error>
+    <input matInput ngModel #password="ngModel" type="password" name="password" placeholder="Password" required />
+    <mat-error *ngIf="password.invalid">Please enter a password</mat-error>
   </mat-form-field>
   <button mat-raised-button color="primary" type="submit">Sign Up</button>
-  <a mat-button color="accent" routerLink="/user/login" routerLinkActive="active">Already have an account? click here to Login instead</a>
+  <a mat-button color="accent" routerLink="/user/login" routerLinkActive="active"><span class="d-none d-md-inline-block">Already have an account? click here to 	&nbsp;</span><span class="highlight">Login instead</span></a>
 
   </form>
   </mat-card>

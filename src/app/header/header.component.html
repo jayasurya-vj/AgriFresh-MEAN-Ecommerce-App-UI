@@ -1,41 +1,78 @@
 <mat-toolbar color="primary" class="mat-elevation-z6">
-    <mat-icon>eco</mat-icon><span>AgriFresh</span>
+  <a mat-button class="logo" routerLink="/home">
+    <mat-icon>eco</mat-icon>AgriFresh
+  </a>
 
-    <div class="spacer"></div>
+  <div class="spacer"></div>
 
-    <a mat-button routerLink="/home" routerLinkActive="active">Home</a>
-    <a mat-button routerLink="/shop" routerLinkActive="active">Shop</a>
-    <a mat-button routerLink="/cart"  matBadge="8" matBadgePosition="after" matBadgeColor="warn" routerLinkActive="active">       
-        Cart <mat-icon>shopping_cart</mat-icon></a>
-    <a  *ngIf="!isAuthenticated" mat-raised-button color="primary" routerLink="/user/login" routerLinkActive="active">Login</a>
-     <button *ngIf="isAuthenticated" mat-button (click)="authService.logout()"> Logout </button>
-    
-  </mat-toolbar>
- <!--
-  <div id="carouselFade" class="carousel slide carousel-fade w-100" data-bs-ride="carousel">
-     data-bs-ride="carousel" 
+  <a mat-button routerLink="/home" class="d-none d-md-inline-block" routerLinkActive="active">Home</a>
+  <a mat-button routerLink="/shop" class="d-none d-md-inline-block" routerLinkActive="active">Shop</a>
+  <a mat-button routerLink="/cart" class="d-none d-md-inline-block" [matBadge]="agriFreshService.noCartItems"
+    matBadgePosition="after" matBadgeColor="warn" routerLinkActive="active">
+    Cart <mat-icon>shopping_cart</mat-icon></a>
+  <a mat-button routerLink="/orders" class="d-none d-md-inline-block" routerLinkActive="active">My Orders</a>
+  <a *ngIf="!isAuthenticated" class="d-none d-md-inline-block" mat-raised-button color="primary"
+    routerLink="/user/login" routerLinkActive="active">Login</a>
+
+  <button *ngIf="isAuthenticated" mat-button (click)="isDropdownOpen=!isDropdownOpen"
+    (mouseenter)="isDropdownOpen=true">
+    {{ this.authService.userName? 'Hi, ' + this.authService.userName : "Profile"}} <mat-icon
+      class="d-none d-md-inline-block">arrow_drop_down</mat-icon>
+    <mat-icon class="d-inline-block d-md-none">&nbsp;menu</mat-icon>
+  </button>
+
+  <button *ngIf="!isAuthenticated" mat-button class="d-block d-md-none dropdown-btn"
+    (click)="isDropdownOpen=!isDropdownOpen" (mouseenter)="isDropdownOpen=true">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <!-- (click)="isDropdownOpen=!isDropdownOpen" *ngIf="isDropdownOpen" -->
+  <!-- <button class="dropbtn">Dropdown</button> -->
+  <!-- (mouseleave)="isDropdownOpen=false"<mat-icon>arrow_drop_down</mat-icon> -->
+
+</mat-toolbar>
+
+<div *ngIf="isDropdownOpen" (mouseleave)="isDropdownOpen=false" class="dropdown-content">
+  <a mat-button routerLink="/home" class="d-block d-md-none" routerLinkActive="active">Home</a>
+  <a mat-button routerLink="/shop" class="d-block d-md-none" routerLinkActive="active">Shop</a>
+  <a mat-button class="d-block d-md-none" routerLink="/cart" [matBadge]="agriFreshService.noCartItems"
+    matBadgePosition="after" matBadgeColor="warn" routerLinkActive="active">
+    Cart <mat-icon>shopping_cart</mat-icon></a>
+  <a mat-button routerLink="/orders" routerLinkActive="active" class="d-block d-md-none">My Orders</a>
+  <a *ngIf="!isAuthenticated" mat-button color="primary" routerLink="/user/login" routerLinkActive="active">Login</a>
+  <a mat-button *ngIf="isAuthenticated" (click)="authService.logout();isDropdownOpen=false"> Logout </a>
+</div>
+
+
+
+
+<ng-container *ngIf="agriFreshService.currentPage=='home'">
+  <div id="carouselFade" class="carousel slide carousel-fade w-100">
+    data-bs-ride="carousel"
     <div class="carousel-inner">
       <div class="carousel-item active" data-bs-interval="2000">
-        <img  mat-card-image class="zoom" src="/assets/images/bg0.jpg"  class="d-block" alt="...">
+        <img mat-card-image class="zoom" src="/assets/images/bg0.jpg" class="d-block" alt="...">
         <div class="carousel-caption">
-        <h1>AGRIFRESH</h1>
-        <h4>Your fresh food partner</h4>
+          <h1>AGRIFRESH</h1>
+          <h4>Your fresh food partner</h4>
+          <a mat-raised-button color="primary" routerLink="/shop">Shop now</a>
         </div>
       </div>
       <div class="carousel-item" data-bs-interval="2000">
-        <img  mat-card-image class="zoom" src="/assets/images/bg1.jpg"  class="d-block" alt="...">
+        <img mat-card-image class="zoom" src="/assets/images/bg1.jpg" class="d-block" alt="...">
         <div class="carousel-caption">
-        <h1>100% Organic Fruits and Vegetables</h1>
-        <h4>Fresh from farm</h4>
+          <h1>100% Organic Fruits and Vegetables</h1>
+          <h4>Fresh from farm</h4>
+          <a mat-raised-button color="primary" routerLink="/shop">Explore now</a>
         </div>
       </div>
       <div class="carousel-item" data-bs-interval="2000">
-        <img mat-card-image class="zoom" src="/assets/images/bg2.jpg"  class="d-block" alt="...">
+        <img mat-card-image class="zoom" src="/assets/images/bg2.jpg" class="d-block" alt="...">
         <div class="carousel-caption">
-        <h1>Rich in Minerals and Nutrients</h1>
-        <h4>Healthy life Guranteed</h4>
+          <h1>Rich in Minerals and Nutrients</h1>
+          <h4>Healthy life Guranteed</h4>
+          <a mat-raised-button color="primary" routerLink="/shop">Get healthy</a>
         </div>
-      </div>          
+      </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselFade" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -45,4 +82,29 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
-  </div>-->
+  </div>
+</ng-container>
+
+<div class="img-container" [id]="this.agriFreshService.currentPage">
+  <ng-container *ngIf="this.agriFreshService.currentPage=='shop'">
+    <div class="img-text">
+      <h1>Shop From Your Farm</h1>
+      <h4>Lorem ipsum dolor</h4>
+      <a mat-raised-button color="primary" routerLink="/cart"> Go to Cart</a>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="this.agriFreshService.currentPage=='cart'">
+    <div class="img-text">
+      <h1>Fresh Food Cart</h1>
+      <h4>Lorem ipsum dolor sit</h4>
+      <a mat-raised-button color="primary" routerLink="/shop">Shop</a>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="this.agriFreshService.currentPage=='orders'">
+    <div class="img-text">
+      <h1>Your Orders</h1>
+      <h4>Lorem ipsum dolor</h4>
+      <a mat-raised-button color="primary" routerLink="/shop">Explore Products</a>
+    </div>
+  </ng-container>
+</div>

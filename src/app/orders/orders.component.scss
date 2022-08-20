@@ -1,0 +1,67 @@
+@use "src/variables"as v;
+
+.mat-expansion-panel-header-title,
+.mat-expansion-panel-header-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: space-around;
+    padding: 20px 10px 20px 20px;
+}
+
+.mat-accordion .mat-expansion-panel {
+    min-width: 75vw;
+}
+
+mat-panel-title p {
+    margin: 0;
+}
+
+mat-panel-title {
+    align-items: flex-start;
+}
+
+.mat-expansion-panel-header {
+    height: unset;
+}
+
+.order-date {
+    font-size: 12px;
+    color: #999;
+}
+
+.item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.item-row-address {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.qty-price-text {
+    font-size: 12px;
+    color: #bbb;
+}
+
+section {
+    max-width: 80vw;
+    margin: auto;
+    text-align: center;
+
+}
+
+@media (max-width: v.$l-max) {
+    .mat-accordion .mat-expansion-panel {
+        min-width: 90vw;
+    }
+}
+
+@media (max-width: v.$m-max) {
+    .mat-accordion .mat-expansion-panel {
+        min-width: 99vw;
+    }
+}

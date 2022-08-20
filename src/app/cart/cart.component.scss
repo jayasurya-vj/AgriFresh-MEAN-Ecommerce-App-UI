@@ -1,31 +1,155 @@
+@use "src/variables"as v;
 
-@use "src/variables" as v;
 
-
-img{
+img {
     max-height: 150px;
     max-width: 150px;
 }
 
-.quantity-text{
-    width:42px;
+.quantity-text {
+    width: 42px;
     text-align: center;
 }
 
-mat-header-row{
-    background-color:  v.$AgriFresh-primary-colr;
-}
-
 mat-header-cell {
-    color: v.$AgriFresh-text !important;
+    color: #999;
     font-weight: 600;
+    justify-content: center;
+    font-size: 13px;
+}
+
+mat-cell {
+    justify-content: center;
+}
+
+mat-header-cell:last-of-type,
+mat-cell:last-of-type {
+    padding-right: 0px;
+}
+
+mat-header-cell:first-of-type,
+mat-cell:first-of-type {
+    padding-left: 5px;
+}
+
+section {
+    max-width: 80vw;
+    margin: auto;
+    margin-bottom: 20px;
 
 }
-mat-table{
+
+mat-table {
     font-family: "Poppins", Arial, sans-serif;
+    margin: auto;
+
 }
 
-mat-cell.cart-quantity-input{
+mat-cell.cart-quantity-input {
     display: flex;
     align-items: baseline;
+}
+
+.proceed-checkout {
+    display: flex;
+    align-items: flex-end;
+}
+
+.mat-mini-fab {
+    box-shadow: none;
+}
+
+.checkout-link-container {
+    text-align: right;
+    font-size: 18px;
+}
+
+.checkout-container {
+    display: flex;
+    justify-content: center;
+    margin: 30px 20px 40px;
+
+    button {
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 16px;
+        min-height: 45px;
+        min-width: 300px;
+    }
+}
+
+.no-items-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto 5px;
+    font-size: 18px;
+}
+
+@media (max-width: v.$m-max) {
+
+    // mat-table
+    section {
+        max-width: 89vw;
+    }
+}
+
+@media (max-width: v.$s-max) {
+    .no-items-container {
+        font-size: 15px;
+    }
+
+    .checkout-container {
+        button {
+            min-width: 99vw;
+        }
+    }
+
+    // mat-table
+    section {
+        max-width: 99vw;
+    }
+
+    .mat-column-Img {
+        display: none;
+    }
+
+    mat-cell.cart-quantity-input {
+        display: flex;
+        align-items: center;
+    }
+
+    mat-cell,
+    mat-header-cell,
+    mat-footer-cell {
+        justify-content: center;
+        font-size: 12px;
+    }
+
+    button.mat-focus-indicator.centered.mat-raised-button.mat-button-base.mat-primary {
+        height: 32px;
+        font-size: 16px;
+    }
+
+    .mat-mini-fab {
+        padding: 0px !important;
+        height: 22px;
+        width: 25px;
+        border-radius: 5px;
+        box-shadow: none;
+    }
+
+    mat-icon {
+        vertical-align: unset !important;
+        margin: -10px;
+    }
+
+    .quantity-text {
+        width: 25px;
+    }
+
+    .price {
+        font-weight: 600;
+    }
 }

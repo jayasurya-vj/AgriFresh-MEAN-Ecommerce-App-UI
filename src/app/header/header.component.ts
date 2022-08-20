@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import {AuthService} from '../auth/auth.service';
+import {AgriFreshService} from '../services/agrifresh.service';
 
 @Component({
   selector: 'app-header',
@@ -11,8 +12,10 @@ export class HeaderComponent implements OnInit {
 
   isAuthenticated=false;
   authSub:Subscription;
-
-  constructor(public authService:AuthService) { }
+  isDropdownOpen=false;
+  
+  constructor(public authService:AuthService,
+    public agriFreshService:AgriFreshService) { }
 
   ngOnInit(): void {
     this.isAuthenticated = this.authService.isAuth;

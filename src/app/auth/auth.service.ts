@@ -1,21 +1,27 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import { Router } from "@angular/router";
 import { AuthData } from './auth.model';
 import {Subject} from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn:"root"})
 export class AuthService{
 
-    // environment.apiDomain
-    domain="http://localhost:5000";
+   
+    domain=environment.apiDomain;
     private token:string;
     private _isAuth = false;
     private isAuthenticated = new Subject<boolean>();
     private logoutTimer:any;
+    private _isRedirectedToAuth:string = 'no';
 
-    constructor(private http:HttpClient, private router :Router){
+    constructor(private http:HttpClient,
+        private activatedRoute: ActivatedRoute, 
+        private router :Router){
+        this.activatedRoute.queryParams.subscribe(queryParams => {
+            this.isRedirectedToAuth = queryParams['redirect'];
+        })
     }
 
     getToken(){
@@ -27,8 +33,20 @@ export class AuthService{
         return this.isAuthenticated.asObservable();
     }
 
+    get isRedirectedToAuth(){
+        return this._isRedirectedToAuth;
+    }
+
+    set isRedirectedToAuth(val){
+        this._isRedirectedToAuth=val;
+    }
+
     get userId(){
         return localStorage.getItem("userId") || null;
+    }
+
+    get userName(){
+        return localStorage.getItem("userName") || null;
     }
 
     get isAuth(){
@@ -46,14 +64,22 @@ export class AuthService{
 
     }
 
-    createUser(email:string,password:string){
+    createUser(name:string,email:string,password:string){
         const authData :AuthData = {
+            name:name,
             email: email,
             password: password
         }
-        this.http.post(this.domain + "/api/user/signup",authData).subscribe(response=>{
-            console.log(response);
-            this.router.navigate(["/"]);
+        this.http.post<{message:string,token:string,expiresIn:number, userId:string, name:string}>(this.domain + "/api/user/signup",authData).subscribe(response=>{
+           this.token=response.token;
+            if(this.token && response.expiresIn){                
+                this.setLogoutTimer(response.expiresIn);
+                let expiryDate = new Date( new Date().getTime() + response.expiresIn*1000); 
+                this.setAuth(this.token,expiryDate,response.userId,response.name);
+                this._isAuth=true;
+                this.isAuthenticated.next(true);
+                this.router.navigate(["/"]);
+            }
         },error=>{
             this.isAuthenticated.next(false);
         });
@@ -64,15 +90,13 @@ export class AuthService{
             email: email,
             password: password
         }
-        this.http.post<{message:string,token:string,expiresIn:number, userId:string}>(this.domain + "/api/user/login",authData)
+        this.http.post<{message:string,token:string,expiresIn:number, userId:string, name:string}>(this.domain + "/api/user/login",authData)
         .subscribe(response=>{
-            console.log(response);
             this.token=response.token;
             if(this.token && response.expiresIn){                
                 this.setLogoutTimer(response.expiresIn);
                 let expiryDate = new Date( new Date().getTime() + response.expiresIn*1000); 
-                console.log(expiryDate);
-                this.setAuth(this.token,expiryDate,response.userId);
+                this.setAuth(this.token,expiryDate,response.userId,response.name);
                 this._isAuth=true;
                 this.isAuthenticated.next(true);
                 this.router.navigate(["/"]);
@@ -95,23 +119,26 @@ export class AuthService{
         this.logoutTimer = setTimeout(()=>this.logout(), expiresIn *1000)
     }
 
-    private setAuth(token:string, expiryDate:Date, userId:string){
+    private setAuth(token:string, expiryDate:Date, userId:string, name:string=''){
         localStorage.setItem("token",token);
         localStorage.setItem("expiryDate",expiryDate.toISOString());
         localStorage.setItem("userId",userId);
+        localStorage.setItem("userName",name);
     }
 
     private getAuth(){
       let token = localStorage.getItem("token");
       let expiryDate =  localStorage.getItem("expiryDate");
       let userId =  localStorage.getItem("userId");
+      let userName =  localStorage.getItem("userName");
       if(!token || !expiryDate) return null;
-      return {token, expiryDate: new Date(expiryDate), userId}
+      return {token, expiryDate: new Date(expiryDate), userId, userName}
     }
 
     private removeAuth(){
         localStorage.removeItem("token");
         localStorage.removeItem("expiryDate");
         localStorage.removeItem("userId");
+        localStorage.removeItem("userName");
     }
 }

@@ -1,4 +1,23 @@
+@use "src/variables" as v;
+
+
+.mat-card {
+  width: 500px;
+  margin: auto;
+}
+
 mat-form-field{
     width : 100%;
     margin-bottom:15px;
   }
+
+  .highlight{
+    color:  v.$AgriFresh-primary-colr;
+  }
+
+  @media (max-width: v.$s-max) {
+    .mat-card {
+      width: 85%;
+    }
+  }
+  

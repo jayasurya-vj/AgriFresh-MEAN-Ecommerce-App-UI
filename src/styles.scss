@@ -41,7 +41,15 @@ $AgriFresh-theme: mat.define-light-theme((
 
 
 html, body { height: 100%; }
-body { margin: 0; font-family: "Roboto", Arial, sans-serif; }
+body { margin: 0; font-family: "Roboto", Arial, sans-serif; overflow-y: scroll;}
+
+.spacer{
+  flex: 1 1 auto;
+}
+app-login, app-signup{
+  align-self: center;
+}
+
 
 .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary, .mat-toolbar {
   color: v.$AgriFresh-text !important; 

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {AgriFreshService} from './services/agrifresh.service';
-import {AuthService} from './auth/auth.service';
-import { Product, CartItem,CartItemInput } from './model/agrifresh.model';
+import { AgriFreshService } from './services/agrifresh.service';
+import { AuthService } from './auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,27 +10,26 @@ import { Product, CartItem,CartItemInput } from './model/agrifresh.model';
 })
 export class AppComponent {
   title = 'AgriFresh';
+  isAuthenticated = false;
+  authSub: Subscription;
 
-  constructor(private agriFreshService:AgriFreshService,
-    private authService:AuthService) { 
+  constructor(private authService: AuthService,
+    public agriFreshService: AgriFreshService) {
     this.authService.autoAuthenticate();
+    this.isAuthenticated = this.authService.isAuth;
+    this.authSub = this.authService.getAuthListener().subscribe(auth => {
+      this.isAuthenticated = auth;
+    })
+    this.agriFreshService.getProducts();
+    window.scroll(0, 0);
   }
 
-  checkout(){
-    // this.agriFreshService.checkout();
-    // this.agriFreshService.getProducts()
-    // this.agriFreshService.getCart();
-    // let item:CartItemInput = {
-    //   itemId: "62fb70a3ff44367c9ca12f9e",
-    //   quantity: 10
-    // };
-    // this.agriFreshService.addCartItem(item);
-    // let CartItem:CartItem = {
-    //   _id: "62fbd7ba9c82e200ac89a3a5",
-    //   item: {_id: "62fb70a3ff44367c9ca12f9e", name: "Peas", displayQuantity: "500g", price: 9},
-    //   quantity: 2
-    // };
-    // this.agriFreshService.editCartItem(CartItem);
-    // this.agriFreshService.deleteCart();
+  scrollToTop() {
+    window.scroll(0, 0);
   }
+
+  ngOnDestroy(): void {
+    this.authSub.unsubscribe();
+  }
+
 }

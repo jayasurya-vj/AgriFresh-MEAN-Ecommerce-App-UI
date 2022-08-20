@@ -1,34 +1,40 @@
-<div class="card-container">
-<ng-container  *ngFor="let product of products">
-<mat-card class="example-card">
-  <div class="zoom-container">
-    <img mat-card-image class="zoom" [src]="getImgUrl(product.name)" [alt]="product.name">
-  </div>
-    
-    <mat-card-content>
-      <span>
-          <b>{{product.name}}</b>  
-          <p class="quantity">{{product.displayQuantity}}</p>      
-       </span>
-       <span class="price">
-        {{ product.price.toString()| currency:"EUR":"symbol"}} 
-       </span>
-    
-    </mat-card-content>
-    <mat-card-actions class="centered">
-      <button *ngIf="!product.cartQuantity" (click)="changeQuantity(product,1)" mat-raised-button color="primary" class="centered">Add</button>
-      
-      <ng-container *ngIf="product.cartQuantity">
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div *ngIf="!isLoading" class="card-container">
+  <ng-container *ngFor="let product of products">
+    <mat-card class="example-card">
+      <div class="zoom-container">
+        <img mat-card-image class="zoom" [src]="getImgUrl(product.name)" [alt]="product.name">
+      </div>
 
-        <button  mat-mini-fab color="primary" (click)="changeQuantity(product,product.cartQuantity - 1)"> <mat-icon>remove</mat-icon></button>      
+      <mat-card-content>
+        <span>
+          <b>{{product.name}}</b>
+          <p class="quantity">{{product.displayQuantity}}</p>
+        </span>
+        <span class="price">
+          {{ product.price.toString()| currency:"EUR":"symbol"}}
+        </span>
 
-        <span [innerHTML]="product.cartQuantity" class="quantity-text"></span>
+      </mat-card-content>
+      <mat-card-actions class="centered">
+        <button *ngIf="!product.cartQuantity" (click)="changeQuantity(product,1)" mat-raised-button color="primary"
+          class="centered">Add</button>
 
-        <button  mat-mini-fab color="primary" (click)="changeQuantity(product,product.cartQuantity + 1)"> <mat-icon>add</mat-icon></button>
+        <ng-container *ngIf="product.cartQuantity">
 
-      </ng-container>
-        
-    </mat-card-actions>
-  </mat-card>
-</ng-container>
+          <button mat-mini-fab color="primary" (click)="changeQuantity(product,product.cartQuantity - 1)">
+            <mat-icon>remove</mat-icon>
+          </button>
+
+          <span [innerHTML]="product.cartQuantity" class="quantity-text"></span>
+
+          <button mat-mini-fab color="primary" (click)="changeQuantity(product,product.cartQuantity + 1)">
+            <mat-icon>add</mat-icon>
+          </button>
+
+        </ng-container>
+
+      </mat-card-actions>
+    </mat-card>
+  </ng-container>
 </div>

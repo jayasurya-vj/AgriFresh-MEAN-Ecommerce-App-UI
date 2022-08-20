@@ -1,42 +1,70 @@
-<mat-table [dataSource]="cartItems" class="mat-elevation-z8">
-    <!-- Position Column -->
-    <ng-container  matColumnDef="Img">
-      <mat-header-cell *matHeaderCellDef></mat-header-cell>
-      <mat-cell *matCellDef="let cartItem"> <img  class="zoom" [src]="getImgUrl(cartItem.item.name)"  alt="Photo of a Shiba Inu"> </mat-cell>
-    </ng-container>
-  
-    <!-- name Column -->
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef> Product Name</mat-header-cell>
-      <mat-cell *matCellDef="let cartItem"> {{cartItem.item.name}} </mat-cell>
-    </ng-container>
-  
-    <!-- price Column -->
-    <ng-container matColumnDef="price">
-      <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-      <mat-cell *matCellDef="let cartItem"> {{cartItem.item.price.toString() | currency:"EUR":"symbol"}} </mat-cell>
-    </ng-container>
-  
-    <!-- quantity Column -->
-    <ng-container matColumnDef="quantity">
-      <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
-      <mat-cell class="cart-quantity-input" *matCellDef="let cartItem; let index=index"> 
-      
-        <button  mat-mini-fab color="primary" (click)="changeQuantity(cartItem,cartItem.quantity - 1)"> <mat-icon>remove</mat-icon></button>      
+<mat-spinner class="align-center mx-auto" *ngIf="isLoading"></mat-spinner>
+<ng-container *ngIf="!isLoading">
+  <section *ngIf="agriFreshService && agriFreshService.noCartItems>0">
+    <div class="checkout-link-container my-2 me-0">
+      <button mat-stroked-button color="primary" (click)="checkout()" class="mx-auto">Checkout from Cart</button>
+    </div>
 
-        <span [innerHTML]="cartItem.quantity" class="quantity-text"></span>
-
-        <button  mat-mini-fab color="primary" (click)="changeQuantity(cartItem,cartItem.quantity + 1)"> <mat-icon>add</mat-icon></button>
-
-      </mat-cell>
-    </ng-container>
-
-    <!-- total Column -->
-    <ng-container matColumnDef="total">
-        <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
-        <mat-cell *matCellDef="let cartItem"> {{(cartItem.quantity * cartItem.item.price).toString() | currency:"EUR":"symbol"}} </mat-cell>
+    <mat-table [dataSource]="cartItems" class="mat-elevation-z8">
+      <!-- Img Column -->
+      <ng-container matColumnDef="Img">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let cartItem"> <img class="zoom" [src]="getImgUrl(cartItem.item.name)"
+            alt="Photo of a Shiba Inu"> </mat-cell>
       </ng-container>
-  
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
+
+      <!-- name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Products </mat-header-cell>
+        <mat-cell *matCellDef="let cartItem"> {{cartItem.item.name}} </mat-cell>
+      </ng-container>
+
+      <!-- price Column -->
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+        <mat-cell *matCellDef="let cartItem"> {{cartItem.item.price.toString() | currency:"EUR":"symbol"}} </mat-cell>
+      </ng-container>
+
+      <!-- quantity Column -->
+      <ng-container matColumnDef="quantity">
+        <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+        <mat-cell class="cart-quantity-input" *matCellDef="let cartItem; let index=index">
+
+          <button mat-mini-fab color="primary" (click)="changeQuantity(cartItem,cartItem.quantity - 1)">
+            <mat-icon>remove</mat-icon>
+          </button>
+
+          <span [innerHTML]="cartItem.quantity" class="quantity-text"></span>
+
+          <button mat-mini-fab color="primary" (click)="changeQuantity(cartItem,cartItem.quantity + 1)">
+            <mat-icon>add</mat-icon>
+          </button>
+
+        </mat-cell>
+      </ng-container>
+
+      <!-- total Column -->
+      <ng-container matColumnDef="total">
+        <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
+        <mat-cell *matCellDef="let cartItem"> {{(cartItem.quantity * cartItem.item.price).toString() |
+          currency:"EUR":"symbol"}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <div class="checkout-container">
+      <button mat-raised-button (click)="checkout()" color="primary">checkout</button>
+    </div>
+  </section>
+
+  <section *ngIf="!agriFreshService || agriFreshService.noCartItems<=0">
+
+    <div class="my-2 text-secondary no-items-container">
+      <p class="mb-4">You have no items in the cart. Start Shopping from our range of organic fruits and vegetables to
+        start a healthy way of life.</p>
+      <a mat-stroked-button color="primary" routerLink="/shop" routerLinkActive="active">Shop Now</a>
+    </div>
+  </section>
+
+</ng-container>

@@ -1,88 +1,136 @@
-<section>
-    <div>
-        <button  mat-fab><mat-icon>local_shipping</mat-icon></button>        
-        <p>Free Shipping</p>
-    </div>      
-    <div>
-        <button  mat-fab><mat-icon>gpp_good</mat-icon></button>
-        <p>Superior Quality</p>
-    </div>
-    <div>
-        <button  mat-fab><mat-icon>agriculture</mat-icon></button>
-        <p>Farm Fresh</p>
-    </div>  
-    <div>
-        <button  mat-fab><mat-icon>support_agent</mat-icon></button>
-        <p>24/7 Support</p>
-    </div>
-</section>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<ng-container *ngIf="!isLoading">
+    <section class="mb-4 mt-3">
+        <div>
+            <button mat-fab>
+                <mat-icon>local_shipping</mat-icon>
+            </button>
+            <p class="icon-text">Free Shipping</p>
+        </div>
+        <div>
+            <button mat-fab>
+                <mat-icon>gpp_good</mat-icon>
+            </button>
+            <p class="icon-text">Superior Quality</p>
+        </div>
+        <div>
+            <button mat-fab>
+                <mat-icon>agriculture</mat-icon>
+            </button>
+            <p class="icon-text">Farm Fresh</p>
+        </div>
+        <div>
+            <button mat-fab>
+                <mat-icon>support_agent</mat-icon>
+            </button>
+            <p class="icon-text">24/7 Support</p>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 heading-section text-center">
+                    <h2 class="my-3">Welcome to AgriFresh - Organic Farm for you</h2>
+                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque nihil est pariatur aliquam
+                        commodi,
+                        sequi officia, dicta laboriosam beatae cumque nulla accusamus exercitationem distinctio?
+                        Consequuntur
+                        delectus labore perspiciatis a fugiat. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Doloribus,
+                        reiciendis eaque inventore ratione aperiam enim dolor perspiciatis incidunt
+                        alias repellendus cum fuga nisi optio facilis mollitia. Aliquid quibusdam in itaque.Lorem ipsum
+                        dolor sit amet consectetur adipisicing elit. Doloribus,
+                        reiciendis eaque inventore ratione aperiam enim dolor perspiciatis incidunt
+                        alias repellendus cum fuga nisi optio facilis mollitia. Aliquid quibusdam in itaque.<span
+                            class="d-none d-lg-block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque
+                            nihil est pariatur aliquam commodi,
+                            sequi officia, dicta laboriosam beatae cumque nulla accusamus exercitationem distinctio?
+                            Consequuntur
+                            delectus labore perspiciatis a fugiat. Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Doloribus,
+                            reiciendis eaque inventore ratione aperiam enim dolor perspiciatis incidunt
+                            alias repellendus cum fuga nisi optio facilis mollitia. Aliquid quibusdam in
+                            itaque.</span></span>
 
-<section>
-    <div class="container-fluid">  
-        <div class="fw-bold ali">
-            <h1>Receipie Blog</h1>
-        </div>     
-      <div class="row align-items-center">
-        <div class="col">
-            <h2>Health benefits of organic Food</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, expedita nisi illo omnis </p>
-     </div>
-        <div class="col zoom-container">
-            <img mat-card-image class="zoom" src="/assets/images/blog2.jpg" alt="Photo of a Shiba Inu">
+                    <div>
+                        <a mat-raised-button routerLink="/shop" color="primary" class="my-1 mt-3">Shop Now</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col">
-            <h2>Health benefits of organic Food</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, expedita nisi illo omnis </p>
-     </div>
-        <div class="col zoom-container">
-            <img mat-card-image class="zoom" src="/assets/images/blog1.jpg" alt="Photo of a Shiba Inu">
-        </div>
-      </div>
-      <div class="row align-items-center">
-        <div class="col zoom-container">
-          <img mat-card-image class="zoom" src="/assets/images/blog2.jpg" alt="Photo of a Shiba Inu">
-        </div>
-        <div class="col">
-            <h2>Health benefits of organic Food</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, expedita nisi illo omnis </p>
-     </div>
-        <div class="col zoom-container">
-            <img mat-card-image class="zoom" src="/assets/images/blog1.jpg" alt="Photo of a Shiba Inu">
-          </div>
-          <div class="col">
-            <h2>Health benefits of organic Food</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, expedita nisi illo omnis </p>
-     </div>
-      </div>
-    </div>
-</section>
+    </section>
 
-<section>
-    <div class="container-fluid img-container">
-        <div class="counter-container">
-            <mat-icon>local_shipping</mat-icon>
-            <div class="counter">{{val1}}+</div>
-            <span>Hectares of Farm</span>
+    <section class="mb-4 receipie-blog">
+        <div class="container-fluid">
+            <div class="fw-bold ali">
+                <h2 class="my-4 fw-bolder">Receipie Blog</h2>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-md w-100">
+                    <h3>AgriFresh Blog Title</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, expedita nisi illo omnis </p>
+                </div>
+                <div class="col-md">
+                    <img mat-card-image class="mat-card-image" src="/assets/images/blog2.jpg"
+                        alt="AgriFresh Home Blog Image">
+                </div>
+                <div class="col-md w-100">
+                    <h3>AgriFresh Blog Title</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, expedita nisi illo omnis </p>
+                </div>
+                <div class="col-md">
+                    <img mat-card-image class="mat-card-image" src="/assets/images/blog1.jpg"
+                        alt="AgriFresh Home Blog Image">
+                </div>
+            </div>
+            <div class="row align-items-center d-none d-md-flex">
+                <div class="col-md">
+                    <img mat-card-image class="mat-card-image" src="/assets/images/blog2.jpg"
+                        alt="AgriFresh Home Blog Image">
+                </div>
+                <div class="col-md w-100">
+                    <h3>AgriFresh Blog Title</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, expedita nisi illo omnis </p>
+                </div>
+                <div class="col-md">
+                    <img mat-card-image class="mat-card-image" src="/assets/images/blog1.jpg"
+                        alt="AgriFresh Home Blog Image">
+                </div>
+                <div class="col-md w-100">
+                    <h3>AgriFresh Blog Title</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, expedita nisi illo omnis </p>
+                </div>
+            </div>
         </div>
-           
-         <div class="counter-container">
-            <mat-icon>local_shipping</mat-icon>
-            <div class="counter">{{val2}}+</div>
-            <span>Delivery Facilities</span>
-        </div>
-           
-           
-         <div class="counter-container">
-            <mat-icon>local_shipping</mat-icon>
-            <div class="counter">{{val3}}+</div>
-            <span>kilograms of food sold</span>
-        </div>
+    </section>
 
-        <div class="counter-container">
-            <mat-icon>local_shipping</mat-icon>
-            <div class="counter">{{val4}}+</div>
-            <span>same day Deliveries</span>
+    <section>
+        <div class="container-fluid img-container">
+            <div class="counter-container">
+                <mat-icon>local_shipping</mat-icon>
+                <div class="counter">{{val1}}+</div>
+                <span>Hectares of Farm</span>
+            </div>
+
+            <div class="counter-container">
+                <mat-icon>local_shipping</mat-icon>
+                <div class="counter">{{val2}}+</div>
+                <span>Delivery Facilities</span>
+            </div>
+
+
+            <div class="counter-container">
+                <mat-icon>local_shipping</mat-icon>
+                <div class="counter">{{val3}}+</div>
+                <span>kilograms of food sold</span>
+            </div>
+
+            <div class="counter-container">
+                <mat-icon>local_shipping</mat-icon>
+                <div class="counter">{{val4}}+</div>
+                <span>same day Deliveries</span>
+            </div>
+
         </div>
-        
-    </div>
-</section>
+    </section>
+</ng-container>

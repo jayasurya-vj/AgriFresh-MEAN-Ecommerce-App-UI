@@ -1,12 +1,151 @@
-// app-header{
-//     display: block;
-//     min-height: 80px;
-// }
+@use "src/variables"as v;
 
-main{
-    // display: flex;
-    // justify-content: center;
-    margin: 130px 40px 20px;
+main {
+  max-width: 100vw;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+main#login,
+main#signup {
+  min-height: 100vh;
+  margin-bottom: 0px;
+}
+
+main#home {
+  margin-bottom: 0px;
+}
+
+app-login,
+app-signup {
+  align-self: center;
+}
+
+div#login.bg,
+div#signup.bg {
+  background: url(/../assets/images/ww.jpg);
+  background-repeat: no-repeat;
+  min-height: 100%;
+  min-width: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+//footer
+.agri-footer {
+  background-color: #f7f6f2;
+  font-size: 14px;
+  padding: 70px 20px 40px;
+  color: #000000;
+}
+
+.agri-footer .agri-footer-logo {
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+
+.agri-footer .agri-footer-widget h2 {
+  font-weight: normal;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.agri-footer .agri-footer-widget ul li {
+  font-size: 14px;
+  margin-bottom: 0px;
+}
+
+.agri-footer .agri-footer-widget ul li a {
+  color: #000000;
+}
+
+.agri-footer .agri-footer-widget .btn-primary {
+  border: 2px solid #fff !important;
+}
+
+.agri-footer .agri-footer-widget .btn-primary:hover {
+  border: 2px solid #fff !important;
 }
 
 
+
+.mouse {
+  position: absolute;
+  right: 15px;
+  z-index: 99;
+}
+
+.mouse-icon {
+  width: 60px;
+  height: 60px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+  background: #82ae46;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+  margin: 0 0 0 auto;
+  display: block;
+}
+
+.mouse-wheel {
+  height: 30px;
+  margin: 2px auto 0;
+  display: block;
+  width: 30px;
+  background: transparent;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+  -moz-animation: 1.6s ease infinite wheel-up-down;
+  animation: 1.6s ease infinite wheel-up-down;
+  color: #fff;
+  font-size: 20px;
+}
+
+
+
+@-moz-keyframes wheel-up-down {
+  100% {
+    margin-top: 2px;
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  0% {
+    margin-top: 20px;
+    opacity: 0;
+  }
+}
+
+@keyframes wheel-up-down {
+  100% {
+    margin-top: 2px;
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  0% {
+    margin-top: 20px;
+    opacity: 0;
+  }
+}
+
+@media (max-width: 770px) {
+  .agri-footer .agri-footer-widget ul li {
+    font-size: 13px;
+  }
+}

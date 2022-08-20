@@ -1,26 +1,83 @@
-<!-- <button mat-raised-button color="primary">Primary</button> -->
-<!-- <button mat-raised-button color="accent">Primary</button>
-<button mat-raised-button color="warn">Primary</button> -->
+<div [id]="this.agriFreshService.currentPage" class="bg">
+  <app-header></app-header>
+  <main [id]="this.agriFreshService.currentPage">
+    <router-outlet></router-outlet>
+  </main>
+</div>
 
-<!-- <app-shop-cards></app-shop-cards>
-<app-cart></app-cart> -->
-<!-- <app-checkout></app-checkout> -->
+<footer class="agri-footer agri-section">
+  <div class="container">
+    <div class="row">
+      <div class="mouse">
+        <div class="mouse-icon" (click)="scrollToTop()">
+          <div class="mouse-wheel"><i class="fa-solid fa-arrow-up"></i></div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col-md-1">
+        <div class="agri-footer-widget mb-4 ml-md-5">
+          <h2 class="agri-heading-2">Menu</h2>
+          <ul class="list-unstyled">
+            <li><a routerLink="/home" class="py-2 d-block">Home</a></li>
+            <li><a routerLink="/shop" class="py-2 d-block">Shop</a></li>
+            <li><a routerLink="/cart" class="py-2 d-block">Cart</a></li>
+            <li><a routerLink="/orders" class="py-2 d-block">Orders</a></li>
+            <li *ngIf="!isAuthenticated"><a routerLink="/home" class="py-2 d-block">Login</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="agri-footer-widget mb-4">
+          <h2 class="agri-heading-2">AgriFresh</h2>
+          <p class="pt-2 d-block">This E-commerce app is designed and developed from scratch using Angular, NodeJS,
+            ExpressJS, MongoDb(MEAN), Angular Materials, SCSS etc.</p>
+          <ul class="agri-footer-social list-unstyled float-md-left float-lft mt-1">
+            <li class="d-inline-block fs-1 pe-4"><span><i class="fa-brands fa-angular"></i></span></li>
+            <li class="d-inline-block fs-1 pe-4"><span><i class="fa-brands fa-node"></i></span></li>
+          </ul>
+        </div>
+      </div>
 
+      <div class="col-md-4">
+        <div class="agri-footer-widget mb-4">
+          <h2 class="agri-heading-2">Developer Info</h2>
+          <p class="py-1 d-block">
+            <a class="text-dark" href="https://linkedin.com/in/jayasurya-fullstack" target="_blank">Jayasurya</a>
+          </p>
+          <p class="py-1 d-block">Fullstack Engineer - Citigroup</p>
+          <p class="py-1 d-block">A passionate developer, who loves javascript and visually appealing UI. Additionally a
+            forever learner, a good listener, a proactive problem solver, who is always with a can-do attitude and a big
+            smile :)</p>
 
-<app-header></app-header>
-<main>
- <router-outlet></router-outlet>
- <button (click)="checkout()">checkout</button>
-</main>
-<!-- <mat-sidenav-container>
-    <mat-sidenav #sidenav role="navigation">
-        <app-header></app-header>
-    </mat-sidenav>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="agri-footer-widget mb-4">
+          <h2 class="agri-heading-2">Contact</h2>
+          <div class="block-23 mb-3">
+            <ul class="list-unstyled">
+              <li class="py-2 d-block"><i class="fa-brands fa-linkedin-in fs-5 me-2 align-middle"></i><a
+                  href="https://linkedin.com/in/jayasurya-fullstack" target="_blank">jayasurya-fullstack</a></li>
+              <li class="py-2 d-block"><i class="fa-brands fa-github fs-5 me-2 align-middle"></i><a
+                  href="https://github.com/jayasurya-vj" target="_blank">jayasurya-vj</a></li>
+              <li class="py-2 d-block"><i class="fa-solid fa-phone fs-5 me-2 align-middle"></i><a
+                  href="tel:+91 7708252412">+91 7708252412</a></li>
+              <li class="py-2 d-block"> <i class="fa-solid fa-envelope fs-5 me-2 align-middle"></i><a
+                  href="mailto:jayasurya.vjeee21@gmail.com">jayasurya.vjeee21@gmail.com</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center">
 
-    <mat-sidenav-content>
-      <main>
-        <router-outlet></router-outlet>
-      </main>
-    </mat-sidenav-content>
-    
-  </mat-sidenav-container> -->
+        <p>
+          Copyright ©<script>document.write(new Date().getFullYear());</script>2022 All rights reserved | This site is developed by
+          <a href="https://linkedin.com/in/jayasurya-fullstack" target="_blank">Jayasurya</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

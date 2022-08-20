@@ -1,48 +1,122 @@
-img{
-    // max-width: 150px;
-    // max-height: 150px;
-    width: 160px;
-    height: 160px;
+@use "src/variables"as v;
+
+img {
+    width: 150px;
+    height: 150px;
 }
 
-.mat-card{
+.mat-card {
     display: inline-block;
     margin: 10px;
     width: 195px;
-    // max-width: 180px;
 }
 
-mat-card-content{
+mat-card-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-mat-card-actions{
+mat-card-actions {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 
-.card-container{
+.card-container {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     flex-wrap: wrap;
+    margin-bottom: 20px;
 }
 
-.price{
-    color:#666;
+.price {
+    color: #666;
 }
 
-.quantity{
-    color:#999;
-    font-size:11px;
-    margin-bottom:0;
+.quantity {
+    color: #999;
+    font-size: 11px;
+    margin-bottom: 0;
 }
 
-.quantity-text{
-    width:42px;
+.quantity-text {
+    width: 42px;
     text-align: center;
 }
 
+@media (max-width: 900px) {
+    img {
+        width: 110px;
+        height: 110px;
+    }
+
+    .mat-card-image {
+        margin: -16px 0 0 0;
+    }
+
+    .mat-card {
+        width: 165px;
+    }
+}
+
+@media (max-width: 750px) {
+    .mat-card {
+        display: inline-flex;
+        justify-content: space-between;
+        margin: 0.5px;
+        min-width: 100%;
+    }
+
+    .mat-card-image {
+        margin: auto 0;
+        min-width: 110px;
+    }
+
+    img {
+        width: 100px;
+        height: 100px;
+    }
+
+    mat-card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        min-width: 110px;
+    }
+
+    .centered {
+        margin: 0 !important;
+        padding: 0;
+    }
+
+    button.mat-focus-indicator.centered.mat-raised-button.mat-button-base.mat-primary {
+        height: 32px;
+        font-size: 16px;
+    }
+
+    .mat-mini-fab {
+        padding: 0px !important;
+        height: 22px;
+        width: 25px;
+        border-radius: 5px;
+    }
+
+    mat-icon {
+        vertical-align: unset !important;
+        margin: -10px;
+    }
+
+    .quantity-text {
+        width: 25px;
+        font-weight: 600;
+        color: #666;
+    }
+
+    .price {
+        font-weight: 600;
+    }
+}

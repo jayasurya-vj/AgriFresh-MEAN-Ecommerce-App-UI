@@ -1,0 +1,78 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div *ngIf="orderPlaced=='true' && orderItems.length>0" class="alert alert-success my-2 text-align-center" role="alert">
+  Order Placed Successfully..!
+</div>
+<mat-accordion *ngIf="!isLoading" class="mb-2">
+  <ng-container *ngFor="let order of orderItems">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <p>
+            {{order.orderedItems[0].item.name}}
+            {{order.orderedItems.length>1 ? '+' + order.orderedItems.length + ' more item(s)' : '' }}
+          </p>
+          <p class="order-date">{{order.created_at | date:'MMM d, y'}}</p>
+        </mat-panel-title>
+        <mat-panel-description>
+          Total:{{order.amount_total| currency:"EUR":"symbol"}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="container text-secondary">
+        <div class="row mb-5">
+          <div class="col-md-6">
+            <div *ngFor="let product of order.orderedItems" class="py-2 item-row">
+              <span class="me-1 text-start text-capitalize">
+                <p class="m-0">{{product.item.name}}</p>
+                <p class="m-0 qty-price-text">{{'Qty ' + product.quantity}}</p>
+              </span>
+              <span class="me-1 text-end">
+                <p class="m-0">{{product.item.price * product.quantity | currency:"EUR":"symbol"}}</p>
+                <p class="m-0 qty-price-text">{{product.item.price| currency:"EUR":"symbol"}}&nbsp;each</p>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="pt-2 pb-1 item-row">
+              <span class="me-1 text-start">Sub Total</span>
+              <span class="me-1 text-end">{{order.amount_subtotal| currency:"EUR":"symbol"}}</span>
+            </div>
+            <div class="py-1 item-row">
+              <span class="me-1 text-start">Delivery fee</span>
+              <span class="me-1 text-end">{{order.amount_shipping| currency:"EUR":"symbol"}}</span>
+            </div>
+            <div class="py-1 item-row">
+              <span class="me-1 text-start">Total</span>
+              <span class="me-1 text-end border-top border-secondary">{{order.amount_total|
+                currency:"EUR":"symbol"}}</span>
+            </div>
+            <div class="py-2 item-row">
+              <span class="me-1 text-start">Payment Status</span>
+              <span class="me-1 text-end text-capitalize text-success">{{order.payment_status}}</span>
+            </div>
+            <div class="py-2 item-row item-row-address  text-capitalize">
+              <h4 class="fw-bolder mb-1">Shipping Address</h4>
+              <p class="mb-1 p-0">{{order.shipping_details.name + ', ' + order.shipping_details.address.line1 + ','}}
+              </p>
+              <p class="mb-1 p-0">{{order.shipping_details.address.line2 + ' ' + order.shipping_details.address.city +
+                ','}}</p>
+              <p class="mb-1 p-0">{{order.shipping_details.address.postal_code + ' ' +
+                order.shipping_details.address.state + ' ' + order.shipping_details.address.country+'.'}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </ng-container>
+
+
+</mat-accordion>
+
+<section *ngIf="!isLoading && orderItems.length<=0">
+
+  <div class="my-2 text-secondary no-items-container">
+    <p class="mb-4">You have not made any orders yet. Start Shopping from our range of organic fruits and vegetables to
+      start a healthy way of life.</p>
+    <a mat-stroked-button color="primary" routerLink="/shop" routerLinkActive="active">Shop Now</a>
+  </div>
+</section>
