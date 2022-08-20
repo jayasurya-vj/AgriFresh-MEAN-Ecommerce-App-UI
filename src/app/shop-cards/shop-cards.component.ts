@@ -18,7 +18,7 @@ export class ShopCardsComponent implements OnInit {
     this.agriFreshService.getModifiedProductsListener().subscribe((data: { products: Product[], cartItems: CartItem[] }) => {
       if (data && data.products) {
         this.products = data.products;
-        setTimeout(() => { this.isLoading = false; }, 2009);
+        setTimeout(() => { this.isLoading = false; }, 1009);
       }
     });
   }

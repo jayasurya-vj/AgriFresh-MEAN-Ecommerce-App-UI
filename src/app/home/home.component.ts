@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit, AfterContentInit {
 
 
   ngOnInit(): void {
-    setTimeout(() => { this.isLoading = false; }, 2009);
+    setTimeout(() => { this.isLoading = false; }, 1009);
   }
   ngAfterContentInit() {
   }

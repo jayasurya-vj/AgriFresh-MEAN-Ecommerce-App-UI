@@ -54,6 +54,15 @@ section {
 
 }
 
+.no-items-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto 5px;
+    font-size: 16px;
+}
+
 @media (max-width: v.$l-max) {
     .mat-accordion .mat-expansion-panel {
         min-width: 90vw;

@@ -20,7 +20,7 @@ export class CartComponent implements OnInit {
     this.agriFreshService.getModifiedProductsListener().subscribe((data: { products: Product[], cartItems: CartItem[] }) => {
       if (data && data.products) {
         this.cartItems = [...data.cartItems];
-        setTimeout(() => { this.isLoading = false; }, 2009);
+        setTimeout(() => { this.isLoading = false; }, 1009);
       }
     });
   }
