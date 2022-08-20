@@ -32,6 +32,7 @@ export class AgriFreshService {
             let routeArr = router.url.split("/");
             this.currentPage = routeArr[routeArr.length - 1].split('?')[0];
             console.log(this.currentPage);
+            this.getProducts();
         });
         this.isAuthenticated = this.authService.isAuth;
         this.authService.getAuthListener().subscribe(auth => {
@@ -69,7 +70,7 @@ export class AgriFreshService {
         let getProducts = this.http.get<{ message: string, products: Product[] }>(this.domain + "/api/product");
         let getCartItems = this.http.get<{ message: string, cartItems: CartItem[] }>(this.domain + "/api/cart");
 
-        if (this.isAuthenticated && this.products.length == 18) {
+        if (this.isAuthenticated && this.products.length > 0) {
             getCartItems.subscribe(data => {
                 if (data.message == "success") {
                     this.modifyProducts(this.products, data.cartItems);
