@@ -25,9 +25,6 @@
     (click)="isDropdownOpen=!isDropdownOpen" (mouseenter)="isDropdownOpen=true">
     <mat-icon>menu</mat-icon>
   </button>
-  <!-- (click)="isDropdownOpen=!isDropdownOpen" *ngIf="isDropdownOpen" -->
-  <!-- <button class="dropbtn">Dropdown</button> -->
-  <!-- (mouseleave)="isDropdownOpen=false"<mat-icon>arrow_drop_down</mat-icon> -->
 
 </mat-toolbar>
 
@@ -46,10 +43,10 @@
 
 
 <ng-container *ngIf="agriFreshService.currentPage=='home'">
-  <div id="carouselFade" class="carousel slide carousel-fade w-100">
-    data-bs-ride="carousel"
+  <div id="carouselFade" class="carousel slide carousel-fade w-100" data-bs-ride="carousel">
+    
     <div class="carousel-inner">
-      <div class="carousel-item active" data-bs-interval="2000">
+      <div class="carousel-item active" data-bs-interval="2300">
         <img mat-card-image class="zoom" src="/assets/images/bg0.jpg" class="d-block" alt="...">
         <div class="carousel-caption">
           <h1>AGRIFRESH</h1>

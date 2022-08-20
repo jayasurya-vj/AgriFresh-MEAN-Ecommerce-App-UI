@@ -110,6 +110,10 @@ img {
     padding: 10px;
 }
 
+.about-container{
+    line-height: 2; 
+}
+
 @media(max-width:770px) {
     section {
         flex-wrap: wrap;
