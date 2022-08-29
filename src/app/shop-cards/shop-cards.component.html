@@ -1,5 +1,11 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 <div *ngIf="!isLoading" class="card-container">
+  <section *ngIf="!products || products.length<=0">
+    <div class="my-2 text-secondary  text-center  text-no-items-container">
+      <p class="mb-4">Fetching Products Failed. Please Try again after sometime.</p>
+      <a mat-stroked-button color="primary" routerLink="/home" routerLinkActive="active">Go To Home</a>
+    </div>
+  </section>
   <ng-container *ngFor="let product of products">
     <mat-card class="example-card">
       <div class="zoom-container">

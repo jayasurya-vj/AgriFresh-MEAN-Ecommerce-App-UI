@@ -28,6 +28,10 @@ export class OrdersComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(queryParams => {
       this.orderPlaced = queryParams['orderplaced'];
     })
+    this.agriFreshService.getLoadedListener().subscribe(loaded=>{
+      if(loaded) this.isLoading = false;
+    })
   }
+  
 
 }

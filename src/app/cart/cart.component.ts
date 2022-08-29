@@ -20,10 +20,12 @@ export class CartComponent implements OnInit {
     this.agriFreshService.getModifiedProductsListener().subscribe((data: { products: Product[], cartItems: CartItem[] }) => {
       if (data && data.products) {
         this.cartItems = [...data.cartItems];
-        this.isLoading = false;
-        // setTimeout(() => { this.isLoading = false; }, 1009);
+        setTimeout(() => { this.isLoading = false; }, 1009);
       }
     });
+    this.agriFreshService.getLoadedListener().subscribe(loaded=>{
+      if(loaded) this.isLoading = false;
+    })
   }
 
   checkout() {

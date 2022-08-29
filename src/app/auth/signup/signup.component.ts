@@ -30,4 +30,12 @@ export class SignupComponent implements OnInit {
 
   }
 
+  getQueryParam(){
+    if(this.authService.redirectedFrom){
+        return {redirect : this.authService.redirectedFrom};
+    }else{
+        return null;
+    }
+  }
+
 }

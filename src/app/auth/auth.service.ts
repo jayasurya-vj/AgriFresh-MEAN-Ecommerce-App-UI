@@ -14,13 +14,14 @@ export class AuthService{
     private _isAuth = false;
     private isAuthenticated = new Subject<boolean>();
     private logoutTimer:any;
-    private _isRedirectedToAuth:string = 'no';
+    private _redirectedFrom:string = 'no';
 
     constructor(private http:HttpClient,
         private activatedRoute: ActivatedRoute, 
         private router :Router){
         this.activatedRoute.queryParams.subscribe(queryParams => {
-            this.isRedirectedToAuth = queryParams['redirect'];
+            console.log("redirected from=>",queryParams['redirect']);  
+            this.redirectedFrom = queryParams['redirect'];
         })
     }
 
@@ -33,12 +34,12 @@ export class AuthService{
         return this.isAuthenticated.asObservable();
     }
 
-    get isRedirectedToAuth(){
-        return this._isRedirectedToAuth;
+    get redirectedFrom(){
+        return this._redirectedFrom;
     }
 
-    set isRedirectedToAuth(val){
-        this._isRedirectedToAuth=val;
+    set redirectedFrom(val){
+        this._redirectedFrom=val;
     }
 
     get userId(){
@@ -78,7 +79,7 @@ export class AuthService{
                 this.setAuth(this.token,expiryDate,response.userId,response.name);
                 this._isAuth=true;
                 this.isAuthenticated.next(true);
-                this.router.navigate(["/"]);
+                this.router.navigate(["/"+this.redirectedFrom]);
             }
         },error=>{
             this.isAuthenticated.next(false);
@@ -99,7 +100,7 @@ export class AuthService{
                 this.setAuth(this.token,expiryDate,response.userId,response.name);
                 this._isAuth=true;
                 this.isAuthenticated.next(true);
-                this.router.navigate(["/"]);
+                this.router.navigate(["/"+this.redirectedFrom]);
             }
         },error=>{
             this.isAuthenticated.next(false);

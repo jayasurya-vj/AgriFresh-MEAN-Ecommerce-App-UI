@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Router, ActivatedRoute, NavigationEnd, UrlSegment } from "@angular/router";
+import { Router,  NavigationEnd } from "@angular/router";
 import { Product, CartItem, CartItemInput, Order } from '../model/agrifresh.model';
 import { Subject, forkJoin } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -12,7 +12,7 @@ export class AgriFreshService {
 
 
     domain = environment.apiDomain;
-    private token: string;
+    private _loaded=false;
     private isAuthenticated: boolean = false;
     private _page = "home";
     private products: Product[] = [];
@@ -20,11 +20,11 @@ export class AgriFreshService {
     private _noCartItems: number = 0;
     private modifiedProducts = new Subject<{ products: Product[], cartItems: CartItem[] }>();
     private orders = new Subject<Order[]>();
+    private pageLoaded = new Subject<boolean>();
 
 
     constructor(private http: HttpClient,
         private router: Router,
-        private activatedRoute: ActivatedRoute,
         private authService: AuthService) {
         router.events.pipe(filter(event => event instanceof NavigationEnd)
         ).subscribe(event => {
@@ -32,7 +32,6 @@ export class AgriFreshService {
             let routeArr = router.url.split("/");
             this.currentPage = routeArr[routeArr.length - 1].split('?')[0];
             console.log(this.currentPage);
-            this.getProducts();
         });
         this.isAuthenticated = this.authService.isAuth;
         this.authService.getAuthListener().subscribe(auth => {
@@ -48,6 +47,19 @@ export class AgriFreshService {
 
     getOrdersListener() {
         return this.orders.asObservable();
+    }
+
+    getLoadedListener() {
+        return this.pageLoaded.asObservable();
+    }
+
+    get loaded() {
+        return this._loaded;
+    }
+
+    set loaded(value) {
+        this._loaded = value;
+        this.pageLoaded.next(value);
     }
 
     get currentPage() {

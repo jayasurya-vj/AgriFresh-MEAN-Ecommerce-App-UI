@@ -1,7 +1,7 @@
 
     <mat-spinner *ngIf="isLoading"></mat-spinner>
 <mat-card *ngIf="!isLoading">
-  <div *ngIf="this.authService.isRedirectedToAuth=='yes'" class="alert alert-danger my-2" role="alert">
+  <div *ngIf="this.authService.redirectedFrom" class="alert alert-danger my-2" role="alert">
     Please Login to Continue..
   </div>
     <form #loginForm="ngForm" (submit)="onLogin(loginForm)" *ngIf="!isLoading">
@@ -14,7 +14,7 @@
     <mat-error *ngIf="password.invalid">Please enter a valid password</mat-error>
   </mat-form-field>
   <button mat-raised-button color="primary" type="submit">Login</button>
-  <a mat-button color="accent" routerLink="/user/signup" routerLinkActive="active"><span class="d-none d-md-inline-block">Don't have an account? click here to 	&nbsp;</span> <span class="highlight">Signup instead</span></a>
+  <a mat-button color="accent" routerLink="/user/signup" [queryParams]="getQueryParam()" routerLinkActive="active"><span class="d-none d-md-inline-block">Don't have an account? click here to 	&nbsp;</span> <span class="highlight">Signup instead</span></a>
 
   </form>
   </mat-card>

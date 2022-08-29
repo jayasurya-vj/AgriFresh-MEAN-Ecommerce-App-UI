@@ -30,4 +30,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.isLoading=true;
     this.authService.loginUser(form.value.email,form.value.password);
   }
+
+  getQueryParam(){
+    if(this.authService.redirectedFrom){
+        return {redirect : this.authService.redirectedFrom};
+    }else{
+        return null;
+    }
+  }
 }
