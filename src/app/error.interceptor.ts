@@ -17,7 +17,7 @@ export class ErrorInterceptor implements HttpInterceptor{
         .pipe(
             catchError((error: HttpErrorResponse)=>{
                 console.log(error);
-                let errMsg="An unknown Error Occured!!";
+                let errMsg="An unknown Error Occured! Please try again later.";
                 if(error.error.message){
                     errMsg=error.error.message;
                 }
